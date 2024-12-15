@@ -17,7 +17,9 @@ OUTPUT_DIR = "../data/"
 nlp = spacy.load("en_core_web_md")
 
 def contain_numbers(phrase):
-    return bool(re.search(r'\d', phrase))
+    url_pattern = r'https?://[^\s]+'
+    phrase_without_urls = re.sub)url_pattern, '', phrase)
+    return bool(re.search(r'\d', phrase_without_urls))
 
 def contain_non_english(phrase):
     english_words = set(words.words())
