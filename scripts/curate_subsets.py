@@ -25,9 +25,6 @@ def contain_non_english(phrase):
         if identifier.classify(word)[0] != 'en'
     ]
 
-    print("Tokens:", tokens)
-    print("Non-English Words:", non_english)
-
     return len(non_english) > 0
 
 def query_wikidata_rarity(noun_tobecheck):
