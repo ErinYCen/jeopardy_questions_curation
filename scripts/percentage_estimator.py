@@ -1,17 +1,18 @@
 import json
 import random
+from tqdm import tqdm
 from curate_subsets import contain_numbers, contain_non_english, contain_unusual_proper_nouns
 
 DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
 COUNT_RESULT = "../data/COUNT_RESULT.json"
-SAMPLE_SIZE = 5000
+SAMPLE_SIZE = 3000
 
 def count_items(data, filter_func):
     """
     Count the number of records passing the filter function.
     """
     count = 0
-    for record in data:
+    for record in tqdm(data, desc=f"Processing with {filter_func.__name__}"):
         if filter_func(record['question']) or filter_func(record['answer']):
             count += 1
     return count
