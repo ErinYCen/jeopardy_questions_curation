@@ -1,0 +1,21 @@
+{
+    "sample_size": 3000,
+    "total_items": 216930,
+    "estimates": {
+        "items_with_numbers": {
+            "sample_count": 1220,
+            "estimated_total": 88218,
+            "percentage": "40.67%"
+        },
+        "items_with_non_english_content": {
+            "sample_count": 2301,
+            "estimated_total": 166385,
+            "percentage": "76.70%"
+        },
+        "items_with_unusual_proper_nouns": {
+            "sample_count": 1911,
+            "estimated_total": 138184,
+            "percentage": "63.70%"
+        }
+    }
+}
