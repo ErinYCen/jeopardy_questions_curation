@@ -4,18 +4,7 @@ import re
 import spacy
 import requests
 
-from nltk.corpus import words, names
-from nltk.tokenize import word_tokenize
-from nltk.tag import pos_tag
-from nltk.chunk import ne_chunk
-from nltk.tree import Tree
-
-import nltk
-nltk.download('words')
-nltk.download('names')
-nltk.download('punkt_tab')
-nltk.download('maxent_ne_chunker_tab')
-nltk.download('averaged_perceptron_tagger_eng')
+from py3langid.langid import LanguageIdentifier, MODEL_FILE
 
 DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
 OUTPUT_DIR = "../data/"
@@ -28,26 +17,16 @@ def contain_numbers(phrase):
     return bool(re.search(r'\d', phrase_without_urls))
 
 def contain_non_english(phrase):
-    english_words = set(words.words())
-    english_names = set(names.words())
-
-    tokens = word_tokenize(phrase)
-
-    tagged_tokens = pos_tag(tokens)
-    named_entities = set()
-
-    for chunk in ne_chunk(tagged_tokens):
-        if isinstance(chunk, Tree):
-            named_entity = " ".join(c[0] for c in chunk)
-            named_entities.add(named_entity.lower())
+    identifier = LanguageIdentifier.from_pickled_model(MODEL_FILE, norm_probs=True)
+    tokens = phrase.split()
 
     non_english = [
         word for word in tokens
-        if word.isalpha()
-        and word.lower() not in english_words
-        and word.lower() not in english_names
-        and word.lower() not in named_entities
+        if identifier.classify(word)[0] != 'en'
     ]
+
+    print("Tokens:", tokens)
+    print("Non-English Words:", non_english)
 
     return len(non_english) > 0
 
