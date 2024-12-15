@@ -7,10 +7,12 @@ It creates subsets tailored for:
 ## Dataset Curation Process
 ### Feature Selection
 Among all the features in this dataset, I selected only "Question" and "Answer" to curate subsets.
-The following features were excluded because they are numeric and reletively irrelevant for this task
+
+The following features were excluded because they are numeric and relatively irrelevant for this task:
 - air_date: "YYYY-MM-DD"
 - value: The value of the question
 - show_number: The show ID where the question aired
+
 The following features are already self-classified and were not included:
 - category: The category of the question
 - round: The round in which the question was asked, are already self-classified.
