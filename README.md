@@ -30,7 +30,7 @@ The following features are already self-classified and were not included:
 - Extracted using the spaCy NER model to identify entities labeled as PERSON, GPE, ORG, LOC, etc.
 - These entities are queried against Wikidata to determine their rarity.
 - An entity is marked "unusual" if it lacks relevant descriptions or has limited associated links(low prominence).
-- Goal:Ensure most questions feature unusual proper nouns, though this method may have a high false-negative rate.
+- Goal: Ensure most questions feature unusual proper nouns, though this method may have a high false-negative rate.
 
 ## Third Party Libraries
 1. requests:
@@ -41,10 +41,10 @@ The following features are already self-classified and were not included:
 - A lightweight library for language identification.
 - Used in contain_non_english to classify individual words in the dataset as English (en) or another language.
 
-3. spacy:
+3. SpaCy:
 - An NLP library for text processing.
 - Usd in contain_unusual_proper_nouns for extract named entities.
-- nlp.en_core_web_md: a pre-trained small English model for spacy.
+- nlp.en_core_web_md: a pre-trained medium-sized English model for spacy.
 
 ## Installation
 ### Clone the Repository
