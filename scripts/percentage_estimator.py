@@ -70,5 +70,7 @@ def main():
     with open(COUNT_RESULT, "w") as outfile:
         json.dump(results, outfile, indent=4)
 
+    print(json.dumps(results, indent=4))
+
 if __name__ == "__main__":
     main()
