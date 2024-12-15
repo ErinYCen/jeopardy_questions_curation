@@ -79,7 +79,7 @@ python3 scripts/curate_subsets.py
 Output files are in data/ directory in JSONL format.
 ### Estimate Dataset Counts
 ```
-python3 percentage_estimator.py 
+python3 scripts/percentage_estimator.py 
 ```
 ## Acknowledgements
 - Original dataset source: [Jeopardy Questions](https://www.reddit.com/r/datasets/comments/1uyd0t/200000_jeopardy_questions_in_a_json_file/)
