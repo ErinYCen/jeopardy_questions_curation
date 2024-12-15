@@ -6,6 +6,9 @@ from curate_subsets import contain_numbers, contain_non_english, contain_unusual
 DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
 COUNT_RESULT = "../data/COUNT_RESULT.json"
 SAMPLE_SIZE = 3000
+"""
+SAMPLE_SIZE is set to 3000 to avoid excessive runtime
+"""
 
 def count_items(data, filter_func):
     """
