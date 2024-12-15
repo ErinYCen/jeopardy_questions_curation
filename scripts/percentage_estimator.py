@@ -11,7 +11,7 @@ with open(config_path, "r", encoding="utf-8") as config_file:
 script_dir = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(script_dir, config["OUTPUT_DIR"])
 DATA_PATH = os.path.join(script_dir, config["DATA_PATH"])
-SAMPLE_SIZE = os.path.join(script_dir, config["SAMPLE_SIZE"])
+SAMPLE_SIZE = config["SAMPLE_SIZE"]
 """
 SAMPLE_SIZE is initially set to 3000 to avoid excessive runtime
 """
