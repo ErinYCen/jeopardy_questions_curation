@@ -54,7 +54,7 @@ The following features are already self-classified and were not included:
 - Used in contain_unusual_proper_nouns for extract named entities.
 - nlp.en_core_web_md: a pre-trained medium-sized English model for spacy.
 
-5. tgdm
+5. tqdm
 - A lightweight and versatile Python library for adding progress bars to loops, making it easy to monitor task progress.
 
 ## Installation
