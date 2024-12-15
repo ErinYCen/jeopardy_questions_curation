@@ -4,12 +4,18 @@ import re
 import spacy
 import requests
 
-from nltk.corpus import words
+from nltk.corpus import words, names
 from nltk.tokenize import word_tokenize
+from nltk.tag import pos_tag
+from nltk.chunk import ne_chunk
+from nltk.tree import Tree
 
 import nltk
 nltk.download('words')
+nltk.download('names')
 nltk.download('punkt_tab')
+nltk.download('maxent_ne_chunker')
+nltk.download('averaged_perceptron_tagger')
 
 DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
 OUTPUT_DIR = "../data/"
@@ -23,8 +29,26 @@ def contain_numbers(phrase):
 
 def contain_non_english(phrase):
     english_words = set(words.words())
+    english_names = set(names.words())
+
     tokens = word_tokenize(phrase)
-    non_english = [word for word in tokens if word.isalpha() and word.lower() not in english_words]
+
+    tagged_tokens = pos_tag(tokens)
+    named_entities = set()
+
+    for chunk in ne_chunk(tagged_tokens):
+        if isinstance(chunk, Tree):
+            named_entity = " ".join(c[0] for c in chunk)
+            named_entities.add(named_entity.lower())
+
+    non_english = [
+        word for word in tokens
+        if word.isalpha()
+        and word.lower() not in english_words
+        and word.lower() not in english_names
+        and word.lower() not in named_entities
+    ]
+
     return len(non_english) > 0
 
 def query_wikidata_rarity(noun_tobecheck):
