@@ -7,6 +7,9 @@ COUNT_RESULT = "../data/COUNT_RESULT.json"
 SAMPLE_SIZE = 5000
 
 def count_items(data, filter_func):
+    """
+    Count the number of records passing the filter function.
+    """
     count = 0
     for record in data:
         if filter_func(record['question']) or filter_func(record['answer']):
@@ -14,7 +17,11 @@ def count_items(data, filter_func):
     return count
 
 def main():
-    with open(DATA_PATH, "r") as file:
+    """
+    Calculate estimated number of items fell into each filter function.
+    Output the result to a JSON file.
+    """
+    with open(DATA_PATH, "r", encoding="utf-8") as file:
         data = json.load(file)
 
     total_items = len(data)
@@ -33,7 +40,7 @@ def main():
     estimated_count_numbers = round((count_numbers / sample_total_items) * total_items)
     estimated_count_non_english = round((count_non_english / sample_total_items) * total_items)
     estimated_count_unusual_proper_nouns = round((count_unusual_proper_nouns / sample_total_items) * total_items)
-  
+   
     results = {
         "sample_size": SAMPLE_SIZE,
         "total_items": total_items,
@@ -45,17 +52,17 @@ def main():
             },
             "items_with_non_english_content": {
                 "sample_count": count_non_english,
-                "estimated_total": estimated_count_non_english
+                "estimated_total": estimated_count_non_english,
                 "percentage": f"{percentage_non_english:.2f}%"
             },
             "items_with_unusual_proper_nouns": {
                 "sample_count": count_unusual_proper_nouns,
-                "estimated_total": estimated_count_unusual_proper_nouns
+                "estimated_total": estimated_count_unusual_proper_nouns,
                 "percentage": f"{percentage_unusual_proper_nouns:.2f}%"
             }
         }
     }
-    
+
     with open(COUNT_RESULT, "w") as outfile:
         json.dump(results, outfile, indent=4)
 
