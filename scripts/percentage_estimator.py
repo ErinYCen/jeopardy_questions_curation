@@ -4,10 +4,13 @@ from tqdm import tqdm
 from util_filters import contain_numbers, contain_non_english, contain_unusual_proper_nouns
 
 DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
-COUNT_RESULT = "../data/COUNT_RESULT.json"
-SAMPLE_SIZE = 3000
+
+with open("config.json", "r", encoding="utf-8") as config_file:
+    config = json.load(config_file)
+COUNT_RESULT = config["COUNT_RESULT"]
+SAMPLE_SIZE = config["SAMPLE_SIZE"]
 """
-SAMPLE_SIZE is set to 3000 to avoid excessive runtime
+SAMPLE_SIZE is initially set to 3000 to avoid excessive runtime
 """
 
 def count_items(data, filter_func):
