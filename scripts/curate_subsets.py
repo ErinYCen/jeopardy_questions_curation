@@ -15,7 +15,7 @@ nltk.download('words')
 nltk.download('names')
 nltk.download('punkt_tab')
 nltk.download('maxent_ne_chunker')
-nltk.download('averaged_perceptron_tagger')
+nltk.download('averaged_perceptron_tagger_eng')
 
 DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
 OUTPUT_DIR = "../data/"
@@ -24,7 +24,7 @@ nlp = spacy.load("en_core_web_md")
 
 def contain_numbers(phrase):
     url_pattern = r'https?://[^\s]+'
-    phrase_without_urls = re.sub)url_pattern, '', phrase)
+    phrase_without_urls = re.sub(url_pattern, '', phrase)
     return bool(re.search(r'\d', phrase_without_urls))
 
 def contain_non_english(phrase):
