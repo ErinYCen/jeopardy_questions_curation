@@ -18,11 +18,13 @@ def filter_and_pick(data, filter_func, n=1000):
     """
     random.shuffle(data)
     picked = []
-    for record in tqdm(data, desc="Processing records", unit="record"):
-        if filter_func(record['question']) or filter_func(record['answer']):
-            picked.append(record)
-        if len(picked) >= n:
-            break
+    with tqdm(total=n, desc="Picking records", unit="record") as pbar:
+        for record in data:
+            if filter_func(record['question']) or filter_func(record['answer']):
+                picked.append(record)
+                pbar.update(1)
+            if len(picked) >= n:
+                break
     return picked
 
 def main():
@@ -34,8 +36,11 @@ def main():
     with open(DATA_PATH, "r", encoding="utf-8") as file:
         data = json.load(file)
 
+    print("Filtering data for 'contain_numbers'...")
     subset_numbers = filter_and_pick(data, contain_numbers, n=1000)
+    print("Filtering data for 'contain_non_english'...")
     subset_non_english = filter_and_pick(data, contain_non_english, n=1000)
+    print("Filtering data for 'contain_unusual_proper_nouns'...")
     subset_unusual_proper_nouns = filter_and_pick(data, contain_unusual_proper_nouns, n=1000)
 
     with open(f"{OUTPUT_DIR}subset_numbers.jsonl", "w", encoding="utf-8") as file:
