@@ -32,18 +32,23 @@ def main():
         data = json.load(file)
 
     total_items = len(data)
-
+    
+    # Select a sample dataset randomly
     sample_data = random.sample(data, min(SAMPLE_SIZE, total_items))
     sample_total_items = len(sample_data)
 
     count_numbers = count_items(sample_data, contain_numbers)
     count_non_english = count_items(sample_data, contain_non_english)
     count_unusual_proper_nouns = count_items(sample_data, contain_unusual_proper_nouns)
-   
+
+    # Calculate percentage of items passed each filter in the sample data
+    # Percentages are rounded to two decimal places
     percentage_numbers = round((count_numbers / sample_total_items) * 100, 2)
     percentage_non_english = round((count_non_english / sample_total_items) * 100, 2)
     percentage_unusual_proper_nouns = round((count_unusual_proper_nouns / sample_total_items) * 100, 2)
-  
+
+    # Estimate total number of items passing each filter for the original dataset
+    # Based on the sample data
     estimated_count_numbers = round((count_numbers / sample_total_items) * total_items)
     estimated_count_non_english = round((count_non_english / sample_total_items) * total_items)
     estimated_count_unusual_proper_nouns = round((count_unusual_proper_nouns / sample_total_items) * total_items)
