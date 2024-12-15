@@ -53,7 +53,7 @@ def query_wikidata_rarity(noun_tobecheck):
         return True
 
     for result in thisdata["search"]:
-        description =  result.get("description", "").lower()
+        description = result.get("description", "").lower()
         if any(keyword in description for keyword in ["person", "city", "state", "country", "organization"]):
             return False
         if result.get("sitelinks", 0) > 50:
