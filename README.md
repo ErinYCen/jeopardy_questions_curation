@@ -63,6 +63,11 @@ The following features are already self-classified and were not included:
 git clone git@github.com:ErinYCen/jeopardy_questions_curation.git
 cd jeopardy_questions_curation
 ```
+### Create the Virtual Environment (Optional)
+```
+python3 -m venv ~/jeopardy_questions_curation
+source ~/jeopardy_questions_curation/bin/activate
+```
 ### Install Dependencies
 ```
 pip3 install -r requirements.txt
