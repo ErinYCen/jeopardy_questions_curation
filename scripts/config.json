@@ -1,4 +1,5 @@
 {
+    "DATA_PATH": "../data/JEOPARDY_QUESTIONS1.json",
     "OUTPUT_DIR": "../data/",
     "COUNT_RESULT": "../data/COUNT_RESULT.json",
     "SAMPLE_SIZE": 3000
