@@ -1,7 +1,7 @@
 import json
 import random
 from tqdm import tqdm
-from curate_subsets import contain_numbers, contain_non_english, contain_unusual_proper_nouns
+from util_filters import contain_numbers, contain_non_english, contain_unusual_proper_nouns
 
 DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
 COUNT_RESULT = "../data/COUNT_RESULT.json"
