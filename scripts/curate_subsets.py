@@ -2,11 +2,10 @@ import json
 import random
 from util_filters import contain_numbers, contain_non_english, contain_unusual_proper_nouns
 
-DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
-
 with open("config.json", "r", encoding="utf-8") as config_file:
     config = json.load(config_file)
 OUTPUT_DIR = config["OUTPUT_DIR"]
+DATA_PATH = config["DATA_PATH"]
 
 def filter_and_pick(data, filter_func, n=1000):
     """
