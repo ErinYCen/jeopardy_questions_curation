@@ -1,11 +1,15 @@
 import json
 import random
+import os
 from util_filters import contain_numbers, contain_non_english, contain_unusual_proper_nouns
 
-with open("config.json", "r", encoding="utf-8") as config_file:
+config_path = os.path.join(os.path.dirname(__file__), "config.json")
+with open(config_path, "r", encoding="utf-8") as config_file:
     config = json.load(config_file)
-OUTPUT_DIR = config["OUTPUT_DIR"]
-DATA_PATH = config["DATA_PATH"]
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(script_dir, config["OUTPUT_DIR"])
+DATA_PATH = os.path.join(script_dir, config["DATA_PATH"])
 
 def filter_and_pick(data, filter_func, n=1000):
     """
