@@ -1,6 +1,7 @@
 import json
 import random
 import os
+from tqdm import tqdm
 from util_filters import contain_numbers, contain_non_english, contain_unusual_proper_nouns
 
 config_path = os.path.join(os.path.dirname(__file__), "config.json")
@@ -17,7 +18,7 @@ def filter_and_pick(data, filter_func, n=1000):
     """
     random.shuffle(data)
     picked = []
-    for record in data:
+    for record in tqdm(data, desc="Processing records", unit="record"):
         if filter_func(record['question']) or filter_func(record['answer']):
             picked.append(record)
         if len(picked) >= n:
