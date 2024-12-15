@@ -12,11 +12,19 @@ OUTPUT_DIR = "../data/"
 nlp = spacy.load("en_core_web_md")
 
 def contain_numbers(phrase):
+    """
+    Check if the text contains any numeric characters.
+    Exclude numbers in url links.
+    """
     url_pattern = r'https?://[^\s]+'
     phrase_without_urls = re.sub(url_pattern, '', phrase)
     return bool(re.search(r'\d', phrase_without_urls))
 
 def contain_non_english(phrase):
+    """
+    Check if the text contains non-English words.
+    Known issue: Struggle with abbrevations, verb morphological changes, and rare names.
+    """
     identifier = LanguageIdentifier.from_pickled_model(MODEL_FILE, norm_probs=True)
     tokens = phrase.split()
 
@@ -28,6 +36,9 @@ def contain_non_english(phrase):
     return len(non_english) > 0
 
 def query_wikidata_rarity(noun_tobecheck):
+    """
+    Check the rarity of a given noun using the Wikidata API.
+    """
     url = "https://www.wikidata.org/w/api.php"
     params = {
         "action": "wbsearchentities",
@@ -50,6 +61,9 @@ def query_wikidata_rarity(noun_tobecheck):
     return True
 
 def contain_unusual_proper_nouns(phrase):
+    """
+    Check if the text contains unusual proper nouns.
+    """
     doc = nlp(phrase)
 
     for sent in doc.sents:
@@ -59,6 +73,9 @@ def contain_unusual_proper_nouns(phrase):
     return False
 
 def filter_and_pick(data, filter_func, n=1000):
+    """
+    Filter and pick a subset of records from the data based on helper functions.
+    """
     random.shuffle(data)
     picked = []
     for record in data:
@@ -69,6 +86,10 @@ def filter_and_pick(data, filter_func, n=1000):
     return picked
 
 def main():
+    """
+    Process data and generate subsets based on filter functions.
+    Output subsets to separate JSONL files.
+    """
 
     with open(DATA_PATH, "r") as file:
         data = json.load(file)
