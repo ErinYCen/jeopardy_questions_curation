@@ -1,5 +1,9 @@
 # Jeopardy Question Dataset Curation
-
+This project curates subsets of Jeopardy questions to validate Named Entity Recognition (NER) algorithms. 
+It creates subsets tailored for:
+- Phrases containing numbers.
+- Phrases containing non-English words.
+- Phrases containing unusual proper nouns.
 ## Dataset Curation Process
 ### Feature Selection
 Among all the features in this dataset, I selected only "Question" and "Answer" to curate subsets.
@@ -27,3 +31,59 @@ The following features are already self-classified and were not included:
 - Goal:Ensure most questions feature unusual proper nouns, though this method may have a high false-negative rate.
 
 ## Third Party Libraries
+1. requests:
+- An HTTP library for making web requests.
+- Used in query_wikidata_rarity to interact with Wikidata's API for entity rarity evaluation.
+
+2. py3langid
+- A lightweight library for language identification.
+- Used in contain_non_english to classify individual words in the dataset as English (en) or another language.
+
+3. spacy:
+- An NLP library for text processing.
+- Usd in contain_unusual_proper_nouns for extract named entities.
+- nlp.en_core_web_md: a pre-trained small English model for spacy.
+
+## Installation
+### Clone the Repository
+```
+git clone git@github.com:ErinYCen/jeopardy_questions_curation.git
+cd jeopardy_questions_curation
+```
+### Install Dependencies
+```
+pip install -r requirements.txt
+```
+If using Python 3.x:
+```
+pip3 install -r requirements.txt
+```
+### Download SpaCy Model
+```
+python -m spacy download en_core_web_md
+```
+If using Python 3.x:
+```
+python3 -m spacy download en_core_web_md
+```
+## Usage
+### Generate Subsets
+```
+python scripts/curate_subsets.py
+```
+If using Python 3.x:
+```
+python3 scripts/curate_subsets.py
+```
+Output files are in data/ directory in JSONL format
+### Estimate Dataset Counts
+```
+python percentage_estimator.py 
+```
+If using Python 3.x:
+```
+python3 percentage_estimator.py 
+```
+## Acknowledgements
+- Original dataset source: [Jeopardy Questions](https://www.reddit.com/r/datasets/comments/1uyd0t/200000_jeopardy_questions_in_a_json_file/)
+
