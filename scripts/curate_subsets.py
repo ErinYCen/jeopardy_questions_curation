@@ -14,7 +14,7 @@ import nltk
 nltk.download('words')
 nltk.download('names')
 nltk.download('punkt_tab')
-nltk.download('maxent_ne_chunker')
+nltk.download('maxent_ne_chunker_tab')
 nltk.download('averaged_perceptron_tagger_eng')
 
 DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
