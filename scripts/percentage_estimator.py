@@ -3,12 +3,11 @@ import random
 from tqdm import tqdm
 from util_filters import contain_numbers, contain_non_english, contain_unusual_proper_nouns
 
-DATA_PATH = "../data/JEOPARDY_QUESTIONS1.json"
-
 with open("config.json", "r", encoding="utf-8") as config_file:
     config = json.load(config_file)
 COUNT_RESULT = config["COUNT_RESULT"]
 SAMPLE_SIZE = config["SAMPLE_SIZE"]
+DATA_PATH = config["DATA_PATH"]
 """
 SAMPLE_SIZE is initially set to 3000 to avoid excessive runtime
 """
