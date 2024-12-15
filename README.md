@@ -79,10 +79,6 @@ python3 scripts/curate_subsets.py
 Output files are in data/ directory in JSONL format.
 ### Estimate Dataset Counts
 ```
-python percentage_estimator.py 
-```
-If using Python 3.x:
-```
 python3 percentage_estimator.py 
 ```
 ## Acknowledgements

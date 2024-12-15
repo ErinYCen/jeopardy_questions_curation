@@ -1,0 +1,5 @@
+{
+    "OUTPUT_DIR": "../data/",
+    "COUNT_RESULT": "../data/COUNT_RESULT.json",
+    "SAMPLE_SIZE": 3000
+}
