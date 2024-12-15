@@ -70,7 +70,7 @@ def main():
         }
     }
 
-    with open(COUNT_RESULT, "w") as outfile:
+    with open(COUNT_RESULT, "w", encoding="utf-8") as outfile:
         json.dump(results, outfile, indent=4)
 
     print(json.dumps(results, indent=4))
